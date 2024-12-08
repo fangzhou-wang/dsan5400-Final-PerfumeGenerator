@@ -1,0 +1,58 @@
+2024-12-08 02:21:00 - INFO - App started.
+2024-12-08 02:21:01 - INFO - Data loaded and preprocessed.
+2024-12-08 02:21:01 - INFO - User set sentiment threshold: 0.0
+2024-12-08 02:21:05 - INFO - App started.
+2024-12-08 02:21:06 - INFO - Data loaded and preprocessed.
+2024-12-08 02:21:06 - INFO - User entered Main Accord 1: rose
+2024-12-08 02:21:06 - INFO - User set sentiment threshold: 0.0
+2024-12-08 02:21:09 - INFO - App started.
+2024-12-08 02:21:10 - INFO - Data loaded and preprocessed.
+2024-12-08 02:21:10 - INFO - User entered Main Accord 1: rose
+2024-12-08 02:21:10 - INFO - User entered Main Accord 2: woody
+2024-12-08 02:21:10 - INFO - User set sentiment threshold: 0.0
+2024-12-08 02:21:15 - INFO - App started.
+2024-12-08 02:21:15 - INFO - App started.
+2024-12-08 02:21:16 - INFO - Data loaded and preprocessed.
+2024-12-08 02:21:16 - INFO - Data loaded and preprocessed.
+2024-12-08 02:21:16 - INFO - User entered Main Accord 1: rose
+2024-12-08 02:21:16 - INFO - User entered Main Accord 2: woody
+2024-12-08 02:21:16 - INFO - User entered Main Accord 3: musky
+2024-12-08 02:21:16 - INFO - User set sentiment threshold: 0.0
+2024-12-08 02:21:16 - INFO - Recommendation process started.
+2024-12-08 02:21:16 - WARNING - No perfumes found matching the criteria.
+2024-12-08 02:21:27 - INFO - App started.
+2024-12-08 02:21:27 - INFO - App started.
+2024-12-08 02:21:28 - INFO - Data loaded and preprocessed.
+2024-12-08 02:21:28 - INFO - Data loaded and preprocessed.
+2024-12-08 02:21:28 - INFO - User entered Main Accord 1: rose
+2024-12-08 02:21:28 - INFO - User entered Main Accord 2: woody
+2024-12-08 02:21:28 - INFO - User set sentiment threshold: 0.0
+2024-12-08 02:21:28 - INFO - Recommendation process started.
+2024-12-08 02:21:28 - WARNING - No perfumes found matching the criteria.
+2024-12-08 02:21:30 - INFO - App started.
+2024-12-08 02:21:31 - INFO - Data loaded and preprocessed.
+2024-12-08 02:21:31 - INFO - User set sentiment threshold: 0.0
+2024-12-08 02:21:35 - INFO - App started.
+2024-12-08 02:21:35 - INFO - Data loaded and preprocessed.
+2024-12-08 02:21:35 - INFO - User entered Main Accord 1: rose
+2024-12-08 02:21:35 - INFO - User set sentiment threshold: 0.0
+2024-12-08 02:21:39 - INFO - App started.
+2024-12-08 02:21:39 - INFO - Data loaded and preprocessed.
+2024-12-08 02:21:39 - INFO - User entered Main Accord 1: rose
+2024-12-08 02:21:39 - INFO - User entered Main Accord 2: woody
+2024-12-08 02:21:39 - INFO - User set sentiment threshold: 0.0
+2024-12-08 02:21:44 - INFO - App started.
+2024-12-08 02:21:44 - INFO - App started.
+2024-12-08 02:21:45 - INFO - Data loaded and preprocessed.
+2024-12-08 02:21:45 - INFO - Data loaded and preprocessed.
+2024-12-08 02:21:45 - INFO - User entered Main Accord 1: rose
+2024-12-08 02:21:45 - INFO - User entered Main Accord 2: woody
+2024-12-08 02:21:45 - INFO - User entered Main Accord 3: musky
+2024-12-08 02:21:45 - INFO - User set sentiment threshold: 0.0
+2024-12-08 02:21:45 - INFO - Recommendation process started.
+2024-12-08 02:21:45 - INFO - Recommended 4 perfumes.
+2024-12-08 02:21:45 - INFO - Started generating descriptions.
+2024-12-08 02:21:47 - INFO - Generated description for white saffron by illuminum.
+2024-12-08 02:21:48 - INFO - Generated description for pleats please l eau by issey miyake.
+2024-12-08 02:21:49 - INFO - Generated description for new york th avenue by fragrance du bois.
+2024-12-08 02:21:50 - INFO - Generated description for perle rare le rouge by panouge.
