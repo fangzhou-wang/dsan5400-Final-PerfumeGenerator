@@ -1,24 +1,19 @@
-name: dsan5400
+name: perfume-recommender
 channels:
-  - apple
+  - defaults
   - conda-forge
 dependencies:
-  - datasets
-  - jupyterlab
-  - more-itertools
-  - nltk
-  - numpy
-  - pydantic
-  - pytorch
-  - pyyaml
-  - pip
-  - pytest
-  - python
-  - jupyter
-  - tqdm
-  - transformers
-  - spacy
-  - scipy
-  - scikit-learn
+  - python=3.9
   - pandas
+  - scikit-learn
+  - nltk
+  - transformers
+  - streamlit
+  - pytorch
   - matplotlib
+  - pip
+  - pip:
+      - pylint
+      - black
+      - ruff
+      - pre-commit
