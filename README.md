@@ -1,8 +1,5 @@
-### **README.md: Perfume Recommendation and Custom Description Generation Project**  
+# **Perfume Recommender & Custom Description Generator**  
 
----
-
-# **Perfume Recommender & Description Generator**  
 This project is an end-to-end **NLP-powered perfume recommendation system** that integrates **sentiment analysis**, **decision tree-based recommendation**, and **custom text generation** using **GPT-2**. Users can interact with the system through a web interface built using **Streamlit**.
 
 ---
@@ -39,19 +36,19 @@ This project recommends perfumes based on user-selected attributes such as **mai
 ## **Features**  
 
 ✔️ **Interactive User Input:**  
-Users can choose perfume features (main accords, gender) and filter by sentiment score.  
+Users can choose main accords, detailed accords, and apply sentiment score filters.  
 
 ✔️ **Sentiment Analysis:**  
-The system analyzes user reviews and calculates sentiment scores using **VADER**.  
+User reviews are analyzed to calculate sentiment scores using **VADER**.  
 
 ✔️ **Decision Tree-Based Recommendations:**  
-Based on main accords, the system recommends relevant perfumes.  
+Predicts the next likely main accords and recommends relevant perfumes.  
 
 ✔️ **Custom Description Generation:**  
-Generates unique perfume descriptions with a fine-tuned **GPT-2** model.  
+Generates unique perfume descriptions using a **GPT-2** model.  
 
 ✔️ **Web Interface:**  
-Built using **Streamlit** for seamless user interaction.  
+A clean and interactive interface built using **Streamlit**.  
 
 ---
 
@@ -63,66 +60,67 @@ Built using **Streamlit** for seamless user interaction.
   - **Machine Learning:** scikit-learn (DecisionTreeClassifier)  
   - **Web Framework:** Streamlit  
   - **Data Handling:** Pandas  
-  - **Environment Management:** Anaconda  
+- **Environment Management:** Conda  
+- **Code Quality:** Pylint, Black, Ruff  
 
 ---
 
 ## **Installation**  
 
 1. **Clone the repository:**  
-   ```bash
-   git clone https://github.com/your-username/perfume-recommender.git
+
+   git clone https://github.com/fangzhou-wang/dsan5400-Final-PerfumeGenerator
    cd perfume-recommender
-   ```
 
-2. **Create a virtual environment:**  
-   ```bash
-   conda create --dsan5400 
-   conda activate dsan5400
-   ```
 
-3. **Install dependencies:**  
-   ```bash
-   pip install -r requirements.txt
-   ```
+2. **Create a Conda environment using the provided environment file:**  
 
-4. **Download necessary models:**  
-   ```bash
+   conda env create -f environment.yml
+   conda activate perfume-recommender
+
+
+3. **Download necessary resources:**  
+
    python -m nltk.downloader vader_lexicon
-   ```
 
 ---
 
 ## **Usage**  
 
-1. **Run the application:**  
-   ```bash
-   streamlit run app.py
-   ```
+1. **Run the Streamlit web application:**  
+
+   streamlit run website_generation.py
+
 
 2. **Interact with the web app:**  
-   - Choose main accords (e.g., Floral, Woody).  
-   - Set the sentiment threshold.  
-   - View recommendations.  
-   - See custom-generated descriptions.  
+
+   - Select up to 5 main accords.
+   - Choose a sentiment score threshold to filter recommendations.
+   - View the list of recommended perfumes.
+   - Read custom-generated descriptions for the perfumes.  
 
 ---
 
 ## **How It Works**  
 
 ### **1. Data Preprocessing:**  
+
 - Cleans perfume descriptions and user reviews.  
-- Removes unwanted characters and formats text.
+- Sentiment scores are calculated using VADER.
 
-### **2. Sentiment Analysis:**  
-- Analyzes reviews using **VADER** to calculate sentiment scores.
+### **2. Recommendation Engine:**  
 
-### **3. Recommendation Engine:**  
-- **Decision Tree Classifier** predicts likely next main accords.  
-- Recommends perfumes based on user preferences and sentiment scores.
+- Decision Tree Models:
+   1. Predicts next main accords.
+   2. Filters perfumes based on selected main accords, detailed accords, and sentiment score.
 
-### **4. Custom Description Generation:**  
-- A **fine-tuned GPT-2 model** generates personalized perfume descriptions based on recommendations.
+### **3. Text Generation:** 
+
+- A fine-tuned GPT-2 model generates personalized descriptions for the recommended perfumes.
+
+### **4. User Interaction:**  
+
+- The Streamlit interface collects user input and displays recommendations and generated descriptions.
 
 ---
 
@@ -130,27 +128,34 @@ Built using **Streamlit** for seamless user interaction.
 
 ```
 perfume-recommender/
-│── app.py                    # Streamlit web app
-│── recommend.py              # Main backend logic (NLP + ML)
-│── generatetext.py          # Fine-tune GPT-2 model
-│── extracted_final_perfume_data.csv    #comments dataset used to train generated model
-├── fra_cleaned.csv       # Cleaned perfume dataset
-├── final_perfume_data.csv           # User reviews dataset
-│── environment.yml          # Dependencies
-└── README.md
+│── perfume_recommender/
+│   ├── data_processing/
+│   │   └── data_processing.py        # Data loading and preprocessing
+│   ├── perfume_recommendation/
+│   │   └── perfume_recommendation.py # Recommendation logic (decision trees)
+│   ├── text_generation/
+│   │   └── text_generation.py        # GPT-2 based text generation
+│── website_generation.py             # Streamlit web interface
+│── data/
+│   ├── fra_cleaned.csv               # Cleaned perfume dataset
+│   └── extracted_reviews.csv         # User review dataset
+│── environment.yml                   # Environment dependencies
+│── README.md                         # Project documentation
+└── LICENSE                           # License
+
 ```
 
 ---
 
 ## **Future Enhancements**  
 
-🔮 **Enhanced Recommendation Model:** Add more complex recommendation systems such as collaborative filtering.  
+🔮 **Enhanced Recommendation Model:** Incorporate advanced recommendation techniques like collaborative filtering or neural networks. 
 
-🌍 **Multilingual Support:** Expand to other languages using multi-lingual models like mT5 or BERT.  
+🌍 **Multilingual Support:** Support multiple languages using multilingual models like mT5 or XLM-R.  
 
-📊 **Data Visualization:** Add charts to show sentiment trends and recommendation stats.  
+📊 **Data Visualization:** Include visualizations to display sentiment trends, recommendation statistics, and user input summaries.  
 
-💬 **Voice Interaction:** Add voice input and output functionality for a hands-free experience.  
+💬 **Voice Interaction:** Integrate voice input/output for a hands-free user experience.
 
 ---
 
