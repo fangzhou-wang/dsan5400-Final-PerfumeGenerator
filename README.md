@@ -9,21 +9,30 @@ This project is an end-to-end **NLP-powered perfume recommendation system** that
 
 ## **Table of Contents**  
 
-1. [Project Overview](#project-overview)  
-2. [Features](#features)  
-3. [Technologies Used](#technologies-used)  
-4. [Installation](#installation)  
-5. [Usage](#usage)  
-6. [How It Works](#how-it-works)  
-7. [Project Structure](#project-structure)  
-8. [Future Enhancements](#future-enhancements)  
-9. [License](#license)  
+1. [Project Overview](#project-overview) 
+2. [Team Members](#team-members)
+3. [Features](#features)  
+4. [Technologies Used](#technologies-used)  
+5. [Installation](#installation)  
+6. [Usage](#usage)  
+7. [How It Works](#how-it-works)  
+8. [Project Structure](#project-structure)  
+9. [Future Enhancements](#future-enhancements)  
+10. [License](#license)  
 
 ---
 
 ## **Project Overview**  
 
 This project recommends perfumes based on user-selected attributes such as **main accords** and **sentiment scores**. It also generates custom descriptions using a **fine-tuned GPT-2 language model**. The system combines **NLP techniques** like **text preprocessing**, **sentiment analysis**, **decision tree modeling**, and **text generation** into a unified pipeline.
+
+---
+
+## **Team Members**
+
+* Kexin Lyu
+* Fangzhou Wang
+* Shuyu Meng
 
 ---
 
