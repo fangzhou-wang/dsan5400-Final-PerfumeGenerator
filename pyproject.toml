@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "NLP-powered perfume recommendation and description generation system"
 authors = ["Your Name <your.email@example.com>"]
 license = "MIT"
+packages = [
+    { include = "perfume_recommender" }
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -20,7 +23,8 @@ black = "^21.5b1"
 pylint = "^2.9"
 ruff = "^0.0.16"
 pre-commit = "^2.14.0"
+pytest = "^6.2"
 
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"

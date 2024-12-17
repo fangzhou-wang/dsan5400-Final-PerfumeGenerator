@@ -127,21 +127,32 @@ A clean and interactive interface built using **Streamlit**.
 ## **Project Structure**  
 
 ```
-perfume-recommender/
-│── perfume_recommender/
-│   ├── data_processing/
-│   │   └── data_processing.py        # Data loading and preprocessing
-│   ├── perfume_recommendation/
-│   │   └── perfume_recommendation.py # Recommendation logic (decision trees)
-│   ├── text_generation/
-│   │   └── text_generation.py        # GPT-2 based text generation
-│── website_generation.py             # Streamlit web interface
-│── data/
-│   ├── fra_cleaned.csv               # Cleaned perfume dataset
-│   └── extracted_reviews.csv         # User review dataset
-│── environment.yml                   # Environment dependencies
-│── README.md                         # Project documentation
-└── LICENSE                           # License
+.
+├── README.md
+├── environment.yml
+├── perfume_recommender
+│   ├── data
+│   │   └── fra_cleaned.csv
+│   ├── perfume_recommender
+│   │   ├── __init__.py
+│   │   ├── data_processing
+│   │   │   ├── __init__.py
+│   │   │   └── data_processing.py
+│   │   ├── perfume_recommendation
+│   │   │   ├── __init__.py
+│   │   │   └── perfume_recommendation.py
+│   │   ├── text_generation
+│   │   │   ├── __init__.py
+│   │   │   └── text_generation.py
+│   │   └── website_generation.py
+│   └── tests
+│       ├── __init__.py
+│       ├── sample_perfume_data.csv
+│       ├── sample_review_data.csv
+│       ├── test_data_processing.py
+│       ├── test_perfume_recommendation.py
+│       └── test_text_generation.py
+└── pyproject.toml
 
 ```
 
