@@ -1,12 +1,17 @@
 import streamlit as st
 import logging
-from data_processing import DataProcessor
-from perfume_recommendation import PerfumeRecommender
-from text_generation import TextGenerator
+from perfume_recommender.data_processing.data_processing import DataProcessor
+from perfume_recommender.perfume_recommendation.perfume_recommendation import (
+    PerfumeRecommender,
+)
+from perfume_recommender.text_generation.text_generation import TextGenerator
 
 # Setup Logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
+
 
 def main():
     """
@@ -22,7 +27,9 @@ def main():
     # Data Processing
     try:
         logger.info("Initializing data processor...")
-        processor = DataProcessor("fra_cleaned.csv", "extracted_reviews_with_perfume_names.csv")
+        processor = DataProcessor(
+            "fra_cleaned.csv", "extracted_reviews_with_perfume_names.csv"
+        )
         data = processor.preprocess_data()
         logger.info("Data successfully loaded and preprocessed.")
     except Exception as e:
@@ -41,7 +48,7 @@ def main():
     for i in range(1, 6):
         """
         Allow the user to input up to 5 main accords.
-        
+
         Args:
             i (int): The main accord level (1-5).
 
@@ -69,7 +76,13 @@ def main():
         logger.info("Recommendation process started...")
         try:
             # Perfume Recommendation
-            perfumes = recommender.recommend_perfumes(selected_accords, sentiment_threshold=sentiment_threshold)
+            # Filter perfumes by sentiment score
+            filtered_data = data[data["Average Sentiment Score"] >= sentiment_threshold]
+
+            # Pass the filtered data to recommend_perfumes
+            perfumes = recommender.recommend_perfumes(selected_accords, gender=None)
+            perfumes = perfumes[perfumes["Perfume"].isin(filtered_data["Perfume"])]
+
             if isinstance(perfumes, str) or perfumes.empty:
                 logger.warning("No perfumes found for the selected criteria.")
                 st.warning("No perfumes found matching the specified criteria.")
@@ -87,10 +100,15 @@ def main():
                     st.write(f"**{perfume['Perfume']} by {perfume['Brand']}**")
                     st.write(f"*Description:* {description}")
                     st.write("---")
-                    logger.info(f"Generated description for {perfume['Perfume']} by {perfume['Brand']}.")
+                    logger.info(
+                        f"Generated description for {perfume['Perfume']} by {perfume['Brand']}."
+                    )
         except Exception as e:
             logger.error(f"Error during recommendation or text generation: {e}")
-            st.error("An error occurred while generating recommendations or descriptions. Please try again.")
+            st.error(
+                "An error occurred while generating recommendations or descriptions. Please try again."
+            )
+
 
 if __name__ == "__main__":
     main()
