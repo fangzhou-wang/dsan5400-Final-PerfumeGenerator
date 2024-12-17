@@ -12,7 +12,18 @@ nltk.download("vader_lexicon", quiet=True)
 vader_analyzer = SentimentIntensityAnalyzer()
 
 class DataProcessor:
+    """
+    A class to handle data loading, cleaning, preprocessing, and sentiment score calculation 
+    for perfume recommendation systems.
+    """
     def __init__(self, perfume_data_path, review_data_path):
+        """
+        Initialize the DataProcessor with file paths for perfume and review data.
+
+        Args:
+            perfume_data_path (str): Path to the perfume data CSV file.
+            review_data_path (str): Path to the review data CSV file.
+        """
         self.perfume_data_path = perfume_data_path
         self.review_data_path = review_data_path
         self.perfume_data = None
@@ -20,6 +31,15 @@ class DataProcessor:
 
     @staticmethod
     def clean_text(text):
+        """
+        Clean text data by removing non-alphabetic characters and converting to lowercase.
+
+        Args:
+            text (str or float): Input text to be cleaned.
+
+        Returns:
+            str: Cleaned text.
+        """
         if isinstance(text, float):
             text = ""
         text = re.sub(r"\\W", " ", text)
@@ -28,10 +48,28 @@ class DataProcessor:
         return text
 
     def calculate_sentiment(self, text):
+        """
+        Calculate the sentiment score of a given text using VADER.
+
+        Args:
+            text (str): Input text for sentiment analysis.
+
+        Returns:
+            float: Compound sentiment score.
+        """
         score = vader_analyzer.polarity_scores(text)["compound"]
         return score
 
     def preprocess_data(self):
+        """
+        Load, clean, and preprocess perfume and review data. This includes:
+        - Cleaning text columns in the perfume dataset.
+        - Calculating sentiment scores for reviews.
+        - Summarizing sentiment scores and merging into the perfume dataset.
+
+        Returns:
+            pd.DataFrame: Preprocessed perfume data with sentiment scores.
+        """
         logger.info("Starting data preprocessing...")
 
         # Load Data

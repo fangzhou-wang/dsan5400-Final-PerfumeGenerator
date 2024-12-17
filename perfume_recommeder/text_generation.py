@@ -6,7 +6,16 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 class TextGenerator:
+    """
+    A class for generating perfume description text using a fine-tuned GPT-2 model.
+    """
     def __init__(self, model_path="./fine_tuned_gpt2"):
+        """
+        Initialize the TextGenerator class and load the GPT-2 model and tokenizer.
+
+        Args:
+            model_path (str): Path to the pre-trained or fine-tuned GPT-2 model.
+        """
         logger.info("Initializing TextGenerator...")
         try:
             logger.info(f"Loading GPT-2 tokenizer from {model_path}")
@@ -20,6 +29,15 @@ class TextGenerator:
             raise
 
     def generate_description(self, prompt):
+        """
+        Generate a descriptive text based on the input prompt using GPT-2.
+
+        Args:
+            prompt (str): Input prompt to guide the text generation.
+
+        Returns:
+            str: Generated descriptive text.
+        """
         logger.info(f"Generating text for prompt: '{prompt}'")
         try:
             inputs = self.tokenizer(prompt, return_tensors="pt")

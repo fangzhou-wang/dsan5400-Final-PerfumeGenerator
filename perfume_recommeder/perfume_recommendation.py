@@ -12,7 +12,17 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 class PerfumeRecommender:
+    """
+    A class for building decision trees and recommending perfumes based on user-selected 
+    main accords, detailed accords, and gender preferences.
+    """
     def __init__(self, perfume_data):
+        """
+        Initialize the PerfumeRecommender with preprocessed perfume data.
+
+        Args:
+            perfume_data (pd.DataFrame): Preprocessed perfume dataset.
+        """
         self.df = perfume_data
         self.main_accord_trees = {}
         self.gender_tree = None
@@ -22,6 +32,15 @@ class PerfumeRecommender:
 
     @staticmethod
     def clean_text(text):
+        """
+        Clean text data by removing non-alphabetic characters and converting to lowercase.
+
+        Args:
+            text (str or float): Input text to be cleaned.
+
+        Returns:
+            str: Cleaned text.
+        """
         lemmatizer = WordNetLemmatizer()
         if isinstance(text, float):
             text = ""
@@ -31,6 +50,10 @@ class PerfumeRecommender:
         return " ".join(lemmatizer.lemmatize(word) for word in text.split())
 
     def build_main_accord_trees(self):
+        """
+        Build decision trees to predict subsequent main accords based on previous main accords.
+        Saves each tree and its corresponding label encoder in a dictionary.
+        """
         logger.info("Building main accord decision trees...")
         accord_columns = ["mainaccord1", "mainaccord2", "mainaccord3", "mainaccord4", "mainaccord5"]
         for i in range(len(accord_columns) - 1):
@@ -54,6 +77,10 @@ class PerfumeRecommender:
                 logger.error(f"Error building main accord tree for {target_col}: {e}")
 
     def build_detailed_tree(self):
+        """
+        Build a decision tree to predict detailed accords based on the first main accord.
+        Uses multi-label binarization for handling multiple detailed accords.
+        """
         logger.info("Building detailed accord decision tree...")
         def clean_and_split_accord(text):
             if not isinstance(text, str):
@@ -77,6 +104,9 @@ class PerfumeRecommender:
             logger.error(f"Error building detailed accord tree: {e}")
 
     def build_gender_tree(self):
+        """
+        Build a decision tree to predict gender preferences based on the first two main accords.
+        """
         logger.info("Building gender decision tree...")
         try:
             y_gender = self.gender_le.fit_transform(self.df["Gender"].fillna("Unknown"))
@@ -89,6 +119,15 @@ class PerfumeRecommender:
             logger.error(f"Error building gender tree: {e}")
 
     def recommend_main_accord(self, selected_main_accords):
+        """
+        Recommend the next main accord based on the currently selected main accords.
+
+        Args:
+            selected_main_accords (dict): User-selected main accords in key-value format.
+
+        Returns:
+            list or str: List of next main accord options or a message if no further accords exist.
+        """
         logger.info("Recommending next main accord...")
         current_level = len(selected_main_accords)
         if current_level >= 5:
@@ -109,6 +148,15 @@ class PerfumeRecommender:
             return "No further main accords to recommend."
 
     def recommend_detailed_accord(self, selected_main_accords):
+        """
+        Recommend detailed accords based on the selected main accords.
+
+        Args:
+            selected_main_accords (dict): User-selected main accords in key-value format.
+
+        Returns:
+            list or str: List of detailed accord options or a message if no options are found.
+        """
         logger.info("Recommending detailed accords...")
         filter_conditions = True
         for level, accord in selected_main_accords.items():
@@ -125,6 +173,17 @@ class PerfumeRecommender:
             return "No detailed accords available."
 
     def recommend_perfumes(self, selected_main_accords, selected_detailed_accord=None, gender=None):
+        """
+        Recommend perfumes based on selected main accords, detailed accord, and gender preference.
+
+        Args:
+            selected_main_accords (dict): User-selected main accords in key-value format.
+            selected_detailed_accord (str, optional): Selected detailed accord. Defaults to None.
+            gender (str, optional): Gender preference (e.g., 'men', 'women', 'unisex'). Defaults to None.
+
+        Returns:
+            pd.DataFrame or str: DataFrame with recommended perfumes or a message if none are found.
+        """
         logger.info("Recommending perfumes...")
         try:
             filter_conditions = True

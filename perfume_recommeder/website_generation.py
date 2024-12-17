@@ -9,6 +9,13 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 def main():
+    """
+    Streamlit web application for perfume recommendation and description generation.
+
+    - Users select main accords, sentiment thresholds, and optional inputs.
+    - Perfume recommendations are displayed based on user preferences.
+    - GPT-2 generates descriptions for the recommended perfumes.
+    """
     logger.info("Starting Perfume Recommender and Description Generator app...")
     st.title("Perfume Recommender and Description Generator")
 
@@ -32,6 +39,15 @@ def main():
     st.subheader("Select Main Accords")
     logger.info("Waiting for user input for main accords...")
     for i in range(1, 6):
+        """
+        Allow the user to input up to 5 main accords.
+        
+        Args:
+            i (int): The main accord level (1-5).
+
+        Returns:
+            dict: User-selected main accords.
+        """
         accord = st.text_input(f"Main Accord {i} (optional)", key=f"accord_{i}")
         if accord:
             selected_accords[f"mainaccord{i}"] = accord.lower()
@@ -41,10 +57,18 @@ def main():
     sentiment_threshold = st.slider("Sentiment Score Threshold", -1.0, 1.0, 0.0)
     logger.info(f"User selected sentiment threshold: {sentiment_threshold}")
 
-    # Recommendation
+    # Recommendation and Description Generation
     if st.button("Recommend Perfumes"):
+        """
+        Handle the perfume recommendation process and display generated descriptions.
+
+        Steps:
+            - Filter perfumes based on selected accords and sentiment threshold.
+            - Generate and display descriptions for recommended perfumes.
+        """
         logger.info("Recommendation process started...")
         try:
+            # Perfume Recommendation
             perfumes = recommender.recommend_perfumes(selected_accords, sentiment_threshold=sentiment_threshold)
             if isinstance(perfumes, str) or perfumes.empty:
                 logger.warning("No perfumes found for the selected criteria.")
